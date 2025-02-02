@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,9 +38,12 @@ public class User extends BaseEntity {
 	@Column(length = 25, unique = true) // adds unique constraint
 	private String email;
 	
-	 @Column(length = 20, nullable = false) // not null constraint
+	 @Column(length = 255, nullable = false) // not null constraint
 	private String password;
 	 
+	@Transient
+	 private String confirmPassword;
+	
 	private LocalDate dob;
 	
 	@Column(length = 25, unique = true) // adds unique constraint
@@ -55,35 +59,37 @@ public class User extends BaseEntity {
     @Column(length = 25) 
 	private Gender gender;
 	
-	@Enumerated(EnumType.STRING) 
-    @Column(length = 30) 
-    private UserRole role;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private UserRole role = UserRole.ROLE_CUSTOMER;
 
 	//User 1--->1 Address , User - one , owning side (will contain FK)
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
     private Address userAddress;
 
   //User can book multiple tickets (ticket *<--->1 User)  option bi_directional
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Ticket> tickets = new ArrayList<>();
+    private List<Ticket> tickets;
 
-	public User(String firstName, String lastName, String email, String password, LocalDate dob, Long mobileNo, int age,
-			boolean isActive, Gender gender, UserRole role, Address userAddress, List<Ticket> tickets) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.dob = dob;
-		this.mobileNo = mobileNo;
-		this.age = age;
-		this.isActive = isActive;
-		this.gender = gender;
-		this.role = role;
-		this.userAddress = userAddress;
-		this.tickets = tickets;
-	}
+public User(String firstName, String lastName, String email, String password, String confirmPassword, LocalDate dob,
+		Long mobileNo, int age, Gender gender, Address userAddress) {
+	super();
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.email = email;
+	this.password = password;
+	this.confirmPassword = confirmPassword;
+	this.dob = dob;
+	this.mobileNo = mobileNo;
+	this.age = age;
+	this.isActive = true;
+	this.gender = gender;
+	this.userAddress = userAddress;
+	this.tickets = new ArrayList<>();
+}
+
+	
 	
     
 
