@@ -1,9 +1,13 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import Footer from './Footer';
+import MyNavbar from './MyNavbar';
 
 const Services = () => {
   return (
-    <div className="container my-5 text-center"> 
+    <>
+    <MyNavbar/>
+    <div style={{ fontWeight: "bold", paddingTop: '150px'}} className="container   text-center"> 
       <h2 className="mb-4">Why Choose Us?</h2>
       <div className="row justify-content-center"> 
         <div className="col-md-4">
@@ -46,6 +50,8 @@ const Services = () => {
         </p>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

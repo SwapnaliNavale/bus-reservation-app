@@ -124,25 +124,31 @@ import { useParams, useNavigate } from "react-router-dom";
 const EditUserDetails = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState( {
+    id: 1,
+    first_name: "John",
+    last_name: "Doe",
+    email: "john@example.com",
+    role: "user",
+  });
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await fetch(`/users/${userId}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch user details');
-        }
-        const data = await response.json();
-        setUser(data);
-      } catch (error) {
-        console.error("Error fetching user details:", error);
-        // Handle error (e.g., display an error message to the user)
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserDetails = async () => {
+  //     try {
+  //       const response = await fetch(`/users/${userId}`);
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch user details');
+  //       }
+  //       const data = await response.json();
+  //       setUser(data);
+  //     } catch (error) {
+  //       console.error("Error fetching user details:", error);
+  //       // Handle error (e.g., display an error message to the user)
+  //     }
+  //   };
 
-    fetchUserDetails();
-  }, [userId]); // Include userId in dependency array
+  //   fetchUserDetails();
+  // }, [userId]); // Include userId in dependency array
 
   const handleInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
