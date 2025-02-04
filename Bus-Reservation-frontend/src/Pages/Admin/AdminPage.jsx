@@ -24,7 +24,7 @@ const AdminLayout = () => {
 
       <div style={{ marginTop: "100px" }} className="d-flex">
         <div
-          className={`bg-light border-right ${
+          className={`bg-light border-right z-3 ${
             isSidebarOpen ? "d-block" : "d-none"
           }`}
           style={{ width: "180px" }}
@@ -34,12 +34,13 @@ const AdminLayout = () => {
               isSidebarOpen ? "btn-danger" : "btn-success"
             }`}
             onClick={toggleSidebar}
+            // style={{ position: 'absolute', top: '130px', left: '100px', zIndex: '100' }}
           >
             {isSidebarOpen ? "Close" : "Open"}
           </button>
 
-          <nav className="nav flex-column">
-            <h5 className="text-xl font-bold mb-2 p-2">Admin Panel</h5>
+          <nav className="nav flex-column bg-transparent">
+            <h5 className="text-xl font-bold mb-2 p-2 bg-secondary">Admin Panel</h5>
             <ul className="space-y-4">
               <li>
                 <Link

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Container, Card, Carousel, Button } from "react-bootstrap";
 import MyNavbar from "../Components/MyNavbar";
+import Footer from "./Footer";
 
 const AboutUs = () => {
   return (
@@ -68,6 +69,7 @@ const AboutUs = () => {
           </p>
         </Card>
       </Container>
+      <Footer/>
     </>
   );
 };

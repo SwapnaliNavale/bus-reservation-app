@@ -32,7 +32,7 @@ const ManageUserDetails = () => {
 
   const handleEdit = (userId) => {
     console.log("Edit user", userId);
-    navigate(`/admin-home/edit-user/${userId}`);
+    navigate(`/admin/edit-user/${userId}`);
   };
 
   const handleDelete = (userId) => {
@@ -50,7 +50,7 @@ const ManageUserDetails = () => {
   };
 
   const handleViewTickets = (userId) => {
-    navigate(`/admin-home/user-tickets/${userId}`);
+    navigate(`/admin/user-tickets/${userId}`);
   };
 
   return (

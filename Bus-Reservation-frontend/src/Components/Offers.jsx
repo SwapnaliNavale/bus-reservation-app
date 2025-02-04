@@ -1,108 +1,193 @@
+import React from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import "../css/offers.css";
 
-import React, { useEffect, useRef } from "react";
-import '../css/offerscaraosel.css';
+import image2 from "../assets/offer2.png";
+import image1 from "../assets/offer1.png";
+import image3 from "../assets/offer3.png";
+import image4 from '../assets/image4.png'
+import image5 from '../assets/image5.png'
+import MyNavbar from "./MyNavbar";
+import Footer from "./Footer";
 
-// const offers = [
-//   {
-//     id: 1,
-//     title: "50% Off on Bus Tickets",
-//     description: "Book now and get 50% off on your next bus ride!",
-//     image: "https://via.placeholder.com/300x200",
-//   },
-//   {
-//     id: 2,
-//     title: "Weekend Getaway Deals",
-//     description: "Enjoy exclusive discounts on weekend trips.",
-//     image: "https://via.placeholder.com/300x200",
-//   },
-//   {
-//     id: 3,
-//     title: "Early Bird Discounts",
-//     description: "Book early and save up to 30% on your travel.",
-//     image: "https://via.placeholder.com/300x200",
-//   },
-//   {
-//     id: 4,
-//     title: "Group Travel Offers",
-//     description: "Special discounts for group bookings.",
-//     image: "https://via.placeholder.com/300x200",
-//   },
-//   {
-//     id: 5,
-//     title: "Last-Minute Deals",
-//     description: "Grab amazing last-minute travel offers.",
-//     image: "https://via.placeholder.com/300x200",
-//   },
-// ];
-const offers = [
+const Offers = () => {
+  
+  const offersData = [
     {
-      title: "Save up to Rs 250 on bus tickets",
+      title: "FIRST",
+      image: image1, // Replace with actual image path
+      description: "Save up to Rs 250 on bus tickets",
       code: "FIRST",
-      validity: "Valid till 28 Feb",
-      bgColor: "bg-primary",
-      icon: "https://via.placeholder.com/50x50?text=FIRST",
     },
     {
-      title: "Save up to Rs 300 on AP, TS routes",
+      title: "BUS300",
+      image: image2, // Replace with actual image path
+      description: "Save up to Rs 300 on bus tickets",
+      code: "BUS300",
+    },
+    {
+      title: "CASH300",
+      image: image3, // Replace with actual image path
+      description: "Save up to Rs 300 on Karnataka, Tamil Nadu, Kerala routes",
+      code: "CASH300",
+    },
+    {
+      title: "SUPERHIT",
+      image: image1, // Replace with actual image path
+      description: "Save up to Rs 300 on AP, TS routes",
       code: "SUPERHIT",
-      validity: "Valid till 28 Feb",
-      bgColor: "bg-gradient-to-r from-teal-500 to-blue-500",
-      icon: "https://via.placeholder.com/50x50?text=SUPERHIT",
     },
     {
-      title: "Save up to Rs 300 on Chartered Bus",
-      code: "CHARTERED15",
-      validity: "Valid till 28 Feb",
-      bgColor: "bg-danger",
-      icon: "https://via.placeholder.com/50x50?text=CHARTERED",
+      title: "APSRTCNEW",
+      image: image2, // Replace with actual image path
+      description: "Save up to Rs 250 on APSRTC bus tickets",
+      code: "APSRTCNEW",
     },
     {
-      title: "Save 25% on KSRTC tickets",
-      code: "SBNEW25",
-      validity: "Valid till 28 Feb",
-      bgColor: "bg-success",
-      icon: "https://via.placeholder.com/50x50?text=KSRTC",
+      title: "CHARTERED50",
+      image: image4, // Replace with actual image path
+      description: "Get 10% Up to Rs 50 Discount on UPSRTC",
+      code: "CHARTERED50",
+    },
+    {
+      title: "SBNEW",
+      image: image5, // Replace with actual image path
+      description: "Save 20% up to Rs 100 on SBSTC bus tickets",
+      code: "SBNEW",
+    },
+    {
+      title: "UPSRTC",
+      image: image1, // Replace with actual image path
+      description: "Save Up to Rs 250 on UPSRTC bus tickets",
+      code: "UPSRTC",
+    },
+    {
+      title: "UP50",
+      image: image3, // Replace with actual image path
+      description: "Get 10% Up to Rs 50 Discount on UPSRTC",
+      code: "UP50",
     },
   ];
-const OffersCarousel = () => {
-  const carouselRef = useRef(null);
 
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    let scrollAmount = 0;
-    const scrollSpeed = 1; // Adjust speed as needed
-
-    const autoScroll = () => {
-      if (carousel) {
-        carousel.scrollLeft += scrollSpeed;
-        scrollAmount += scrollSpeed;
-
-        // Reset scroll position when reaching the end
-        if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
-          carousel.scrollLeft = 0;
-          scrollAmount = 0;
-        }
-      }
-      requestAnimationFrame(autoScroll);
-    };
-
-    autoScroll();
-  }, []);
+  // Function to copy the promo code to the clipboard
+  const handleCopy = (promoCode) => {
+    navigator.clipboard
+      .writeText(promoCode)
+      .then(() => alert(`Promo code "${promoCode}" copied to clipboard!`))
+      .catch((err) => console.error("Error copying promo code: ", err));
+  };
 
   return (
-    <div className="offers-carousel-container">
-      <h2>Exclusive Offers</h2>
-      <div className="offers-carousel" ref={carouselRef}>
-        {offers.map((offer) => (
-          <div key={offer.id} className="offer-card">
-            <img src={offer.image} alt={offer.title} />
-            <h3>{offer.title}</h3>
-            <p>{offer.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+    <MyNavbar/>
+    <section className="mt-5">
+      <Container>
+        <h2 className="text-center mb-5 text-white">Offers</h2>
+        <Row>
+          {offersData.map((offer, index) => (
+            <Col key={index} md={4} className="mb-4">
+              <Card className="offer-card text-center shadow rounded h-100">
+                <Card.Img variant="top" src={offer.image} alt={offer.title} className="offer-card-img"/>
+                <Card.Body className="p-3">
+                  <Card.Title>{offer.title}</Card.Title>
+                  <Card.Text>{offer.description}</Card.Text>
+                  <div className="promo-code d-flex justify-content-between align-items-center mt-3">
+                    <span className="promo-text text-primary fw-bold">
+                      {offer.code}
+                    </span>
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      onClick={() => handleCopy(offer.code)}
+                    >
+                      Copy
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </section>
+    <Footer/>
+    </>
   );
 };
 
-export default OffersCarousel;
+export default Offers;
+
+
+// import React from 'react';
+// import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+// import '../css/Offers.css'
+
+// // Import images from your assets folder
+// import firstOfferImage from '../assets/offer1.png';
+// import bus300OfferImage from '../assets/offer2.png';
+// // Import other images similarly...
+
+// const Offers = () => {
+//   const offersData = [
+//     {
+//       title: 'FIRST',
+//       image: firstOfferImage,
+//       description: 'Save up to Rs 250 on bus tickets',
+//       code: 'FIRST'
+//     },
+//     {
+//       title: 'BUS300',
+//       image: bus300OfferImage,
+//       description: 'Save up to Rs 300 on bus tickets',
+//       code: 'BUS300'
+//     },
+//     // ...add other offers here
+//   ];
+
+//   // Function to copy the promo code to the clipboard
+//   const handleCopy = (promoCode) => {
+//     navigator.clipboard.writeText(promoCode)
+//       .then(() => alert(`Promo code "${promoCode}" copied to clipboard!`))
+//       .catch((err) => console.error('Error copying promo code: ', err));
+//   };
+
+//   return (
+//     <section className="mt-5 ">
+//       <Container>
+//         <h2 className="text-center mb-4 text-white">Offers</h2>
+//         <Row>
+//           {offersData.map((offer, index) => (
+//             <Col key={index} md={4} className="mb-4">
+//               <Card className="offer-card text-center shadow rounded h-100">
+//                 <Card.Img
+//                   variant="top"
+//                   src={offer.image}
+//                   alt={offer.title}
+//                   className="offer-card-img"
+//                 />
+//                 <Card.Body className="p-3">
+//                   <Card.Title>{offer.title}</Card.Title>
+//                   <Card.Text>{offer.description}</Card.Text>
+//                   <div className="promo-code d-flex justify-content-between align-items-center mt-3">
+//                     <span className="promo-text text-primary fw-bold">
+//                       {offer.code}
+//                     </span>
+//                     <Button
+//                       variant="outline-primary"
+//                       size="sm"
+//                       onClick={() => handleCopy(offer.code)}
+//                     >
+//                       Copy
+//                     </Button>
+//                   </div>
+//                 </Card.Body>
+//               </Card>
+//             </Col>
+//           ))}
+//         </Row>
+//       </Container>
+//     </section>
+//   );
+// };
+
+// export default Offers;

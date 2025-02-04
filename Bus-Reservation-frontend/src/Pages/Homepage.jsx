@@ -14,9 +14,10 @@ const Homepage = () => {
     <>
       <MyNavbar />
       <HeroSection />
+
       <MovingImages/>
       <OfferCarousel/>
-      {/* <AboutUs/> */}
+
       <Footer/>
     </>
   );
