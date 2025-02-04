@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import '../css/Login.css'
+import { jwtDecode } from "jwt-decode";
+
 
 
 const Mylogin = () => {
@@ -28,15 +30,23 @@ const Mylogin = () => {
         sessionStorage["token"] = token;
         toast.success("Logged in successfully");
 
+         // Decode the token to extract user role
+         const decodedToken = jwtDecode(token);
+         const userRole = decodedToken.role;  // Adjust 'role' to match your backend JWT payload structure
+
         // After successful authentication, dynamically navigate to homepage
-        navigate("/");
+         // Conditional navigation based on role
+        if (userRole === "admin") {
+          navigate("/admin-home");
+        } else {
+          navigate("/");
+        }
       } else {
         toast.error(response["error"]);
       }
     }
   };
 
-  useEffect(() => {}, []);
 
   return (
     <div className="login-background login-form"> 
