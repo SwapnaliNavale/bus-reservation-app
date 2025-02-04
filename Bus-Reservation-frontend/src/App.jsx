@@ -13,6 +13,7 @@ import BusListPage from "./Pages/BusListPage";
 // import AdminPage from "./Pages/Admin/AdminPage";
 import AdminPageWithRouter from "./Pages/Admin/AdminPage";
 import AboutUs from "./Components/AboutUs";
+import Services from "./Components/Services";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/admin/*" element={<AdminPageWithRouter/>}></Route>
           <Route path="/login" element={<Mylogin />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
+          <Route path="/services" element={<Services />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/user/ticket" element={<TicketBooking />}></Route>

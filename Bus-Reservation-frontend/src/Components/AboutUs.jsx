@@ -6,7 +6,7 @@ const AboutUs = () => {
   return (
     <>
       <MyNavbar />
-      <Container className="d-flex flex-column align-items-center justify-content-center min-vh-100">
+      <Container className="mt-5 d-flex flex-column align-items-center justify-content-center min-vh-100">
         <Card className="shadow-lg p-4 text-center w-75">
           <h1 className="text-primary fw-bold mb-3">About Us</h1>
           <p className="fs-5">

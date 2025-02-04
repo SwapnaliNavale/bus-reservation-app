@@ -25,11 +25,11 @@ function TicketBooking() {
   return (
     <div>
       <MyNavbar />
-      <div className="container mt-5 ">
+      <div className="container py-5 mt-5">
         <div className="row">
-          <h2 className="text-center mb-4">Ticket Details</h2>
           <div className="col-3"></div>
-          <div className="col-6 p-4 h-100 shadow">
+          <div className="mt-5 col-6 p-4 h-100 shadow">
+          <h2 className="text-center mb-4">Ticket Details</h2>
             <div className="row">
               <div className="col">
                 <div className="mb-4">
